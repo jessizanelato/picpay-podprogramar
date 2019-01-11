@@ -8,14 +8,9 @@ let db = admin.firestore();
 exports.picpay = functions.https.onRequest((request, response) => {
     let body = request.body;
     let headers = request.headers;
-    let format = headers['content-type'];
-    
-    db.collection('logs').doc().set({
-        date: new Date(),
-        format: format,
-        headers: request.headers,
-        body: body
-    });
+
+    console.log('>>>> Headers: ' + JSON.stringify(headers));
+    console.log('>>>> Body: ' + JSON.stringify(body));
 
     switch (body.event_type) {
         case 'new_subscription':
