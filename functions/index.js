@@ -18,10 +18,10 @@ exports.picpay = functions.https.onRequest((request, response) => {
                 id: body.event.subscriber.id,
                 name: body.event.subscriber.name,
                 email: body.event.subscriber.email,
-                image_url_small: body.event.subscriber.image_url_small,
                 plan_name: body.event.plan.name,
                 plan_value: body.event.plan.value,
                 inserted_date: body.date,
+                subscription_id: body.event.subscription_id,
                 status: 'active'
             }).then(ref => {
                 response.status(200).send("New subscription inserted with success.");
