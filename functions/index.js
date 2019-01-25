@@ -63,3 +63,21 @@ exports.picpayActiveList = functions.https.onRequest((request, response) => {
     });
 
 });
+
+exports.robotsList = functions.https.onRequest((request, response) => {
+    db.collection('robots')
+    .get()
+    .then(function(query) {
+        let data = {};
+        query.forEach(function(doc) {
+            data[doc.id] = doc.data();
+        });
+        response.send(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+
+});
+
+
